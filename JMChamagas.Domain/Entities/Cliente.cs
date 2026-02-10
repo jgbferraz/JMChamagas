@@ -1,3 +1,6 @@
+using JMChamagas.Domain.Enums;
+using JMChamagas.Domain.Interfaces;
+
 namespace JMChamagas.Domain.Entities
 {
    
