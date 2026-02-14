@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JMChamagas.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31ef091727b097e229783e200b818b7745fc08ee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98ae9909b904b9d0e2928dca58def7804b6d4555")]
 [assembly: System.Reflection.AssemblyProductAttribute("JMChamagas.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JMChamagas.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

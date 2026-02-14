@@ -5,10 +5,8 @@ namespace JMChamagas.Domain.Entities
 {
     public class Vasilhame : JMChamagasBase, IAgregateRoot
     {
-        public decimal PrecoCusto { get; set; }
-        public decimal PrecoVenda { get; set; }
-        public int QuantidadeEstoque { get; set; }
-        public int QuantidadeMinima { get; set; }
+        public decimal ValorUnitario { get; set; }
         public TipoVasilhame Tipo { get; set; }
+        public Estoque? Estoque { get; set; }
     }
 }
