@@ -1,0 +1,85 @@
+@page "/produtos"
+@using JMChamagas.Domain.Enums
+@using JMChamagas.Web.Services
+@inject ProdutoAppService ProdutoService
+
+<PageTitle>Produtos</PageTitle>
+
+<h1>Produtos</h1>
+
+<div class="mb-3">
+    <label class="form-label">Tipo de produto</label>
+    <select class="form-select" @bind="tipoSelecionado">
+        @foreach (var tipo in tiposProduto)
+        {
+            <option value="@tipo">@tipo</option>
+        }
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Valor unitário</label>
+    <input class="form-control" type="number" step="0.01" @bind="valorUnitario" />
+</div>
+
+<button class="btn btn-primary" @onclick="AdicionarProduto">Adicionar produto</button>
+
+@if (!string.IsNullOrWhiteSpace(mensagemErro))
+{
+    <div class="alert alert-danger mt-3">@mensagemErro</div>
+}
+
+@if (!string.IsNullOrWhiteSpace(mensagemSucesso))
+{
+    <div class="alert alert-success mt-3">@mensagemSucesso</div>
+}
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Valor unitário</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produto in produtos)
+        {
+            <tr>
+                <td>@produto.ProdutoTipo</td>
+                <td>@produto.ValorUnitario.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private readonly TipoProduto[] tiposProduto = Enum.GetValues<TipoProduto>();
+    private TipoProduto tipoSelecionado = TipoProduto.GasP13;
+    private decimal valorUnitario;
+    private string? mensagemErro;
+    private string? mensagemSucesso;
+    private IReadOnlyCollection<JMChamagas.Domain.Entities.Produto> produtos = [];
+
+    protected override void OnInitialized()
+    {
+        produtos = ProdutoService.Listar();
+    }
+
+    private void AdicionarProduto()
+    {
+        mensagemErro = null;
+        mensagemSucesso = null;
+
+        try
+        {
+            ProdutoService.Adicionar(valorUnitario, tipoSelecionado);
+            produtos = ProdutoService.Listar();
+            mensagemSucesso = "Produto adicionado com sucesso.";
+            valorUnitario = 0;
+        }
+        catch (Exception ex)
+        {
+            mensagemErro = ex.Message;
+        }
+    }
+}

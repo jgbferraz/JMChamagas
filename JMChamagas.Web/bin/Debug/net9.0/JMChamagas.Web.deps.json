@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "JMChamagas.Web/1.0.0": {
+        "dependencies": {
+          "JMChamagas.Domain": "1.0.0"
+        },
+        "runtime": {
+          "JMChamagas.Web.dll": {}
+        }
+      },
+      "JMChamagas.Domain/1.0.0": {
+        "runtime": {
+          "JMChamagas.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JMChamagas.Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JMChamagas.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
