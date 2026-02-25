@@ -9,7 +9,10 @@ main[b-5e1b9gv5wk] {
 }
 
 .sidebar[b-5e1b9gv5wk] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-image: linear-gradient(180deg, #2b2b2b 0%, #7a7a7a 100%);
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 .top-row[b-5e1b9gv5wk] {
@@ -47,17 +50,6 @@ main[b-5e1b9gv5wk] {
 }
 
 @media (min-width: 641px) {
-    .page[b-5e1b9gv5wk] {
-        flex-direction: row;
-    }
-
-    .sidebar[b-5e1b9gv5wk] {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
-
     .top-row[b-5e1b9gv5wk] {
         position: sticky;
         top: 0;

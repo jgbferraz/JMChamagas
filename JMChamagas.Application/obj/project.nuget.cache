@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "9WwOm2FlQ3k=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jgbfe\\source\\repos\\JMChamagas\\JMChamagas.Application\\JMChamagas.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jgbfe\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.2\\microsoft.extensions.dependencyinjection.9.0.2.nupkg.sha512",
+    "C:\\Users\\jgbfe\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.2\\microsoft.extensions.dependencyinjection.abstractions.9.0.2.nupkg.sha512",
+    "C:\\Users\\jgbfe\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.9\\microsoft.netcore.app.ref.9.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}

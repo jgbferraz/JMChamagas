@@ -1,0 +1,16 @@
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\bin\Debug\net9.0\JMChamagas.Application.deps.json
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\bin\Debug\net9.0\JMChamagas.Application.dll
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\bin\Debug\net9.0\JMChamagas.Application.pdb
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\bin\Debug\net9.0\JMChamagas.Domain.dll
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\bin\Debug\net9.0\JMChamagas.Domain.pdb
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamagas.Application.csproj.AssemblyReference.cache
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamagas.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamagas.Application.AssemblyInfoInputs.cache
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamagas.Application.AssemblyInfo.cs
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamagas.Application.csproj.CoreCompileInputs.cache
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamagas.Application.sourcelink.json
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamag.D0009899.Up2Date
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamagas.Application.dll
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\refint\JMChamagas.Application.dll
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\JMChamagas.Application.pdb
+C:\Users\jgbfe\source\repos\JMChamagas\JMChamagas.Application\obj\Debug\net9.0\ref\JMChamagas.Application.dll

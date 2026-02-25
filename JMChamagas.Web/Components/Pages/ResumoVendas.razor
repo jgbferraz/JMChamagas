@@ -1,0 +1,127 @@
+﻿@page "/resumovendas"
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+@using JMChamagas.Domain.Entities
+@using JMChamagas.Application.Services
+@inject VendaAppService VendaService
+
+<PageTitle>JMChamagas</PageTitle>
+
+
+<div class="container mt-5">
+    <h1>JMChamagas</h1>
+    <p>Data e Hora: @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</p>
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <label class="form-label">Período</label>
+            <select class="form-select" @bind="filtroSelecionado" @bind:after="AplicarFiltro">
+                <option value="@PeriodoFiltro.Hoje">Hoje</option>
+                <option value="@PeriodoFiltro.SeteDias">7 dias</option>
+                <option value="@PeriodoFiltro.TrintaDias">30 dias</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total no período</h5>
+                    <p class="card-text fs-4">@totalPeriodo.ToString("C")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Quantidade de vendas</h5>
+                    <p class="card-text fs-4">@quantidadeVendasPeriodo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="mt-4">Últimas vendas no período</h4>
+
+    @if (vendasRecentes.Count == 0)
+    {
+        <p>Nenhuma venda registrada.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Itens</th>
+                    <th>Valor total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var venda in vendasRecentes)
+                {
+                    <tr>
+                        <td>@venda.DataVenda.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@(venda.Produtos.Count + venda.Vasilhames.Count)</td>
+                        <td>@venda.ValorTotal.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    private enum PeriodoFiltro
+    {
+        Hoje,
+        SeteDias,
+        TrintaDias
+    }
+
+    private IReadOnlyCollection<Venda> vendasRecentes = [];
+    private PeriodoFiltro filtroSelecionado = PeriodoFiltro.Hoje;
+    private decimal totalPeriodo;
+    private int quantidadeVendasPeriodo;
+    private IReadOnlyCollection<Venda> vendasCache = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        vendasCache = await VendaService.ListarAsync();
+        AplicarFiltro();
+    }
+
+    private void AplicarFiltro()
+    {
+        var agoraLoja = DateTime.Now;
+        var inicioPeriodoLoja = ObterInicioPeriodoLoja(agoraLoja);
+
+        var vendasNoPeriodo = vendasCache
+            .Where(venda =>
+            {
+                var dataVendaLoja = ConverterParaHorarioLoja(venda.DataVenda);
+                return dataVendaLoja >= inicioPeriodoLoja && dataVendaLoja <= agoraLoja;
+            })
+            .OrderByDescending(venda => venda.DataVenda)
+            .ToList();
+
+        quantidadeVendasPeriodo = vendasNoPeriodo.Count;
+        totalPeriodo = vendasNoPeriodo.Sum(venda => venda.ValorTotal);
+        vendasRecentes = vendasNoPeriodo.Take(10).ToList();
+    }
+
+    private DateTime ObterInicioPeriodoLoja(DateTime agoraLoja) => filtroSelecionado switch
+    {
+        PeriodoFiltro.Hoje => agoraLoja.Date,
+        PeriodoFiltro.SeteDias => agoraLoja.AddDays(-7),
+        PeriodoFiltro.TrintaDias => agoraLoja.AddDays(-30),
+        _ => agoraLoja.Date
+    };
+
+    private static DateTime ConverterParaHorarioLoja(DateTime dataVenda) => dataVenda.Kind switch
+    {
+        DateTimeKind.Utc => dataVenda.ToLocalTime(),
+        DateTimeKind.Unspecified => DateTime.SpecifyKind(dataVenda, DateTimeKind.Local),
+        _ => dataVenda
+    };
+}

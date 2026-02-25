@@ -1,6 +1,6 @@
 @page "/produtos"
 @using JMChamagas.Domain.Enums
-@using JMChamagas.Web.Services
+@using JMChamagas.Application.Services
 @inject ProdutoAppService ProdutoService
 
 <PageTitle>Produtos</PageTitle>
@@ -8,7 +8,7 @@
 <h1>Produtos</h1>
 
 <div class="mb-3">
-    <label class="form-label">Tipo de produto</label>
+    
     <select class="form-select" @bind="tipoSelecionado">
         @foreach (var tipo in tiposProduto)
         {
@@ -60,20 +60,20 @@
     private string? mensagemSucesso;
     private IReadOnlyCollection<JMChamagas.Domain.Entities.Produto> produtos = [];
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        produtos = ProdutoService.Listar();
+        produtos = await ProdutoService.ListarAsync();
     }
 
-    private void AdicionarProduto()
+    private async Task AdicionarProduto()
     {
         mensagemErro = null;
         mensagemSucesso = null;
 
         try
         {
-            ProdutoService.Adicionar(valorUnitario, tipoSelecionado);
-            produtos = ProdutoService.Listar();
+            await ProdutoService.AdicionarAsync(valorUnitario, tipoSelecionado);
+            produtos = await ProdutoService.ListarAsync();
             mensagemSucesso = "Produto adicionado com sucesso.";
             valorUnitario = 0;
         }
